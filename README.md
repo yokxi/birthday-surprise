@@ -2,6 +2,8 @@
 
 A simple, interactive birthday website. This guide explains how to add your personal content.
 
+**[Click Here to See the Live Surprise!](https://yokxi.github.io/birthday-surprise/)**
+
 ## 🛠️ How to Customize
 
 Follow these steps to personalize your gift.
