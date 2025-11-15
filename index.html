@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="birthday-music" src="audio/musica.mp3" loop></audio>
+    <div id="confetti-container"></div>
+
+    <div id="scena-busta" class="scena active">
+        <div class="busta-oggetto">
+            <div class="cuore">❤️</div>
+            <p>Clicca per aprire!</p>
+        </div>
+    </div>
+
+    <div id="scena-torta" class="scena">
+        <div class="torta-container">
+            <div class="candela">
+                <div class="fiamma"></div>
+            </div>
+            <div class="torta">
+                <div class="strato strato-3">
+                    <div class="glassa-strato"></div>
+                    <div class="torta-strato"></div>
+                </div>
+                <div class="strato strato-2">
+                    <div class="glassa-strato"></div>
+                    <div class="torta-strato"></div>
+                </div>
+                <div class="strato strato-1">
+                    <div class="glassa-strato"></div>
+                    <div class="torta-strato"></div>
+                </div>
+            </div>
+        </div>
+        <h2>Soffia forte sul microfono!</h2>
+        <p id="mic-fallback" style="display: none; font-weight: bold; color: #e91e63;">
+            Microfono non rilevato.<br>Clicca sulla torta per continuare!
+        </p>
+    </div>
+
+    <div id="scena-foto" class="scena">
+        
+        <div class="lettera-con-foto">
+            
+            <img src="images/angolo-tl.png" class="foto-angolo angolo-tl">
+            <img src="images/angolo-tr.png" class="foto-angolo angolo-tr">
+            
+            <div class="lettera-testo">
+                <h1>Buon Compleanno!</h1>
+                <p>Ho voluto farti una piccola sorpresa...</p>
+                <p>Sei una persona incredibile e ti auguro tutta la felicità del mondo. Ogni giorno con te è un regalo.</p>
+                <p>...</p>
+                <p>Con tutto il mio amore,</p>
+                <p>[Tuo Nome]</p>
+            </div>
+            
+            <img src="images/angolo-bl.png" class="foto-angolo angolo-bl">
+            <img src="images/angolo-br.png" class="foto-angolo angolo-br">
+        </div>
+
+        <hr>
+
+        <h2>I nostri ricordi...</h2>
+        <div class="polaroid-container">
+            
+            <div class="polaroid">
+                <img src="images/foto1.jpg" alt="Ricordo 1">
+                <p>La nostra prima foto!</p>
+            </div>
+            
+            <div class="polaroid">
+                <img src="images/foto2.jpg" alt="Ricordo 2">
+                <p>Quella volta al mare...</p>
+            </div>
+            
+            <div class="polaroid">
+                <img src="images/foto3.jpg" alt="Ricordo 3">
+                <p>Che ridere!</p>
+            </div>
+
+        </div>
+        <button id="btn-next-foto">Avanti</button>
+    </div>
+
+    <div id="scena-finale" class="scena">
+        <h1>Happy Birthday!</h1>
+        <h2>🎉🎂🥳</h2>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
