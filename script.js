@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let analyser;
     let micStream;
     let loopAnimazione;
-    let candelaSpenta = false; // Corretto: candelaSpenta
+    let candelaSpenta = false; 
 
     function cambiaScena(scenaAttuale, nuovaScena) {
         scenaAttuale.classList.remove('active');
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function controllaSuono() {
-        if (candelaSpenta) return; // Corretto: candelaSpenta
+        if (candelaSpenta) return; 
 
         const SOGLIA_RUMORE = 160; 
         
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function spegniCandeline() {
-        if (candelaSpenta) return; // Corretto: candelaSpenta
-        candelaSpenta = true; // Corretto: candelaSpenta
+        if (candelaSpenta) return; 
+        candelaSpenta = true; 
 
         if (loopAnimazione) {
             cancelAnimationFrame(loopAnimazione);
