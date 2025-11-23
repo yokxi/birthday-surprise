@@ -148,6 +148,29 @@ document.addEventListener('DOMContentLoaded', function () {
         confettiContainer.appendChild(confetti);
     }
 
+    const animals = ['🦋', '🐰', '🐱', '🐦', '🐞', '🦄', '🐼'];
+
+    function createAnimal() {
+        const animal = document.createElement('div');
+        animal.classList.add('animaletto');
+        animal.textContent = animals[Math.floor(Math.random() * animals.length)];
+
+        animal.style.left = Math.random() * 100 + 'vw';
+        // Randomize size slightly
+        animal.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+
+        // Randomize animation duration
+        const duration = Math.random() * 10 + 15; // 15-25s (slow floating)
+        animal.style.animationDuration = duration + 's';
+
+        animal.addEventListener('animationend', () => {
+            animal.remove();
+        });
+
+        document.body.appendChild(animal);
+    }
+
     setInterval(createConfetti, 150);
+    setInterval(createAnimal, 2000); // Spawn an animal every 2 seconds
 
 });
