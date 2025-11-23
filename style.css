@@ -20,9 +20,10 @@ body {
     background: white;
     padding: 30px 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     max-width: 90%;
 }
+
 .scena.active {
     opacity: 1;
     visibility: visible;
@@ -35,20 +36,31 @@ body {
     cursor: pointer;
     background: #ffefd5;
 }
+
 .busta-oggetto {
     animation: bounce 1s infinite;
 }
+
 .cuore {
     font-size: 60px;
     color: #e91e63;
 }
+
 #scena-busta p {
     font-weight: bold;
     color: #555;
 }
+
 @keyframes bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 #btn-next-foto {
@@ -62,8 +74,9 @@ body {
     border: none;
     border-radius: 8px;
     transition: background-color 0.3s;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
+
 #btn-next-foto:hover {
     background-color: #45a049;
 }
@@ -71,8 +84,9 @@ body {
 #scena-torta h2 {
     color: #333;
 }
+
 #scena-torta {
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .torta-container {
@@ -90,6 +104,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .strato {
@@ -97,14 +112,40 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Initial state for animation */
+    transform: translateY(-500px);
+    opacity: 0;
 }
+
+.strato.falling {
+    animation: dropIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes dropIn {
+    0% {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+
+    70% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .torta-strato {
     width: 100%;
     height: 35px;
     background-color: #F0C077;
     border: 2px solid #5C2C06;
-    border-top: none; 
+    border-top: none;
 }
+
 .glassa-strato {
     width: 100%;
     height: 20px;
@@ -120,11 +161,9 @@ body {
     left: 0;
     right: 0;
     height: 10px;
-    background-image: radial-gradient(
-        circle at 10px 0,
-        #5C2C06 10px,
-        transparent 10px
-    );
+    background-image: radial-gradient(circle at 10px 0,
+            #5C2C06 10px,
+            transparent 10px);
     background-size: 20px 10px;
 }
 
@@ -146,19 +185,27 @@ body {
 .candela {
     width: 12px;
     height: 45px;
-    background: linear-gradient(
-        to bottom,
-        #fff 0%, #fff 25%,
-        #E74C3C 25%, #E74C3C 50%,
-        #fff 50%, #fff 75%,
-        #E74C3C 75%, #E74C3C 100%
-    ); 
+    background: linear-gradient(to bottom,
+            #fff 0%, #fff 25%,
+            #E74C3C 25%, #E74C3C 50%,
+            #fff 50%, #fff 75%,
+            #E74C3C 75%, #E74C3C 100%);
     background-size: 100% 20px;
     border: 1px solid #ccc;
     border-radius: 3px;
     position: absolute;
     top: 36px;
     z-index: 10;
+
+    /* Initially hidden */
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s ease-out;
+}
+
+.candela.show {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .fiamma {
@@ -176,38 +223,39 @@ body {
 }
 
 @keyframes flicker {
-    from { 
-        opacity: 1; 
+    from {
+        opacity: 1;
         transform: translateX(-50%) scale(1.05);
     }
-    to { 
-        opacity: 0.8; 
-        transform: translateX(-50%) scale(1); 
+
+    to {
+        opacity: 0.8;
+        transform: translateX(-50%) scale(1);
     }
 }
 
 #scena-foto.active {
-    position: relative; 
+    position: relative;
     max-height: 85vh;
-    width: 70vw; 
+    width: 70vw;
     max-width: 800px;
-    
+
     display: flex;
     flex-direction: column;
-    
-    margin: 60px 0; 
+
+    margin: 60px 0;
     padding: 30px 60px;
 }
 
 #scena-foto.active h1 {
     color: #d81b60;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
 .lettera-testo {
-    overflow-y: auto; 
-    max-height: 40vh; 
-    text-align: left; 
+    overflow-y: auto;
+    max-height: 40vh;
+    text-align: left;
     padding: 15px;
     margin: 15px 0;
     background: #fafafa;
@@ -215,6 +263,7 @@ body {
     border-top: 2px dashed #fce4ec;
     border-bottom: 2px dashed #fce4ec;
 }
+
 .lettera-testo p {
     margin-bottom: 1em;
 }
@@ -227,9 +276,9 @@ body {
     background-color: #fff;
     padding: 10px;
     padding-bottom: 30px;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
     border: 1px solid #f0f0f0;
-    z-index: 20; 
+    z-index: 20;
 }
 
 .angolo-tl {
@@ -237,16 +286,19 @@ body {
     left: -60px;
     transform: rotate(-15deg);
 }
+
 .angolo-tr {
     top: -40px;
     right: -60px;
     transform: rotate(15deg);
 }
+
 .angolo-bl {
     bottom: -40px;
     left: -60px;
     transform: rotate(15deg);
 }
+
 .angolo-br {
     bottom: -40px;
     right: -60px;
@@ -258,6 +310,7 @@ body {
     font-size: 3.5rem;
     color: #ff6347;
 }
+
 #scena-finale h2 {
     font-size: 3rem;
 }
