@@ -30,33 +30,40 @@ document.addEventListener('DOMContentLoaded', function () {
         cambiaScena(scenaBusta, scenaTorta);
         music.play();
 
-        // Animation for cake layers
-        const strati = document.querySelectorAll('.strato');
-        const candela = document.querySelector('.candela');
+        // Restart CSS animations for the new cake
+        // We do this by removing and re-adding the animation classes
+        const animations = [
+            'animate-drop-plate',
+            'animate-drop-layer-1',
+            'animate-drop-layer-2',
+            'animate-drop-layer-3',
+            'animate-drip'
+        ];
 
-        // Reset animations
-        strati.forEach(s => {
-            s.classList.remove('falling');
-            s.style.opacity = '0';
+        animations.forEach(animClass => {
+            const elements = scenaTorta.querySelectorAll('.' + animClass);
+            elements.forEach(el => {
+                el.classList.remove(animClass);
+                void el.offsetWidth; // Force reflow
+                el.classList.add(animClass);
+            });
         });
-        candela.classList.remove('show');
 
-        // Trigger falling animation sequentially
-        const strato1 = document.querySelector('.strato.strato-1');
-        const strato2 = document.querySelector('.strato.strato-2');
-        const strato3 = document.querySelector('.strato.strato-3');
+        // Handle flames separately if needed, or just let them flicker
+        const flames = document.querySelectorAll('.new-flame');
+        flames.forEach(f => {
+            f.style.opacity = '1';
+            f.style.transform = 'scale(1)';
+            f.classList.remove('animate-flame-ignite');
+            void f.offsetWidth;
+            f.classList.add('animate-flame-ignite');
+        });
 
-        setTimeout(() => strato1.classList.add('falling'), 100);
-        setTimeout(() => strato2.classList.add('falling'), 600);
-        setTimeout(() => strato3.classList.add('falling'), 1100);
-
-        // Show candle after layers
         setTimeout(() => {
-            candela.classList.add('show');
             scenaTorta.style.cursor = 'pointer';
             scenaTorta.addEventListener('click', spegniCandeline);
             avviaAscoltoMicrofono();
-        }, 1800);
+        }, 2500);
     });
 
     btnNextFoto.addEventListener('click', function () {
@@ -111,8 +118,11 @@ document.addEventListener('DOMContentLoaded', function () {
             cancelAnimationFrame(loopAnimazione);
         }
 
-        document.querySelectorAll('.fiamma').forEach(fiamma => {
-            fiamma.style.display = 'none';
+        // Extinguish new flames
+        document.querySelectorAll('.new-flame').forEach(fiamma => {
+            fiamma.style.transition = 'opacity 0.5s, transform 0.5s';
+            fiamma.style.opacity = '0';
+            fiamma.style.transform = 'scale(0)';
         });
 
         if (micStream) {
@@ -124,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setTimeout(() => {
             cambiaScena(scenaTorta, scenaFoto);
-        }, 1000);
+        }, 1500);
     }
 
     function gestisciErroreMic(errore) {
